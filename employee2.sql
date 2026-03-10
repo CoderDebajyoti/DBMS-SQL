@@ -41,21 +41,20 @@ select * from branch;
 
 
 -- LAB5
--- Create a table cars with company name, company, model, and color
+-- Create a table cars with company name, company model, and color
 create table cars(
-company_name varchar(20),
-company varchar(20),
+c_name varchar(20),
 model varchar(20),
 color varchar(20)
 );
 
 -- Insert 5 values
-insert into cars values
-('company1','company1','model1','color1'),
-('company2','company2','model2','color2'),
-('company3','company3','model3','color1'),
-('company4','company4','model4','color4'),
-('company5','company5','model5','color1');
+insert into cars(c_name, model, color) values
+('company1','model1','color1'),
+('company2','model2','color2'),
+('company3','model3','color1'),
+('company4','model4','color4'),
+('company5','model5','color1');
 
 -- Display the table
 select * from cars;
