@@ -6,6 +6,7 @@ CREATE TABLE accounts (
     account_number INT PRIMARY KEY,
     balance DECIMAL(10, 2)
 );
+
 SELECT * FROM accounts WHERE balance > 0;
 SELECT COUNT(*) FROM accounts WHERE balance > 0;
 
