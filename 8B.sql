@@ -1,3 +1,6 @@
+-- Select the hospital database to work with 
+use hospital1;
+
 -- Get total bill amount
 SELECT SUM(amount) AS total_bill_amount FROM bill;
 
