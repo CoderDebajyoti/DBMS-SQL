@@ -14,12 +14,22 @@ CREATE TABLE patient (
     contact_no VARCHAR(15)           -- Contact number
 );
 
+/*
+Output:
+Query OK, 0 rows affected
+*/
+
 -- Create a table to store medicine details
 CREATE TABLE medicine (
     med_id INT PRIMARY KEY,          -- Unique medicine ID
     med_name VARCHAR(50),            -- Name of the medicine
     price DECIMAL(8,2)               -- Price of the medicine
 );
+
+/*
+Output:
+Query OK, 0 rows affected
+*/
 
 -- Create a table to store billing details
 CREATE TABLE bill (
@@ -30,6 +40,11 @@ CREATE TABLE bill (
     FOREIGN KEY (patient_id) REFERENCES patient(patient_id)
 );
 
+/*
+Output:
+Query OK, 0 rows affected
+*/
+
 -- Create a table to store doctor details
 CREATE TABLE doctor (
     doctor_id INT PRIMARY KEY,       -- Unique doctor ID
@@ -37,6 +52,11 @@ CREATE TABLE doctor (
     specialization VARCHAR(50),      -- Doctor's specialization
     phone VARCHAR(15)                -- Contact number
 );
+
+/*
+Output:
+Query OK, 0 rows affected
+*/
 
 -- Create a table to store appointments
 CREATE TABLE appointment (
@@ -49,6 +69,11 @@ CREATE TABLE appointment (
     FOREIGN KEY (doctor_id) REFERENCES doctor(doctor_id)
 );
 
+/*
+Output:
+Query OK, 0 rows affected
+*/
+
 -- Insert sample data into patient table
 INSERT INTO patient VALUES
 (1, 'Rahul Sharma', 60, 'Male', 'Diabetes', '9876543210'),
@@ -58,6 +83,11 @@ INSERT INTO patient VALUES
 (5, 'Mohan Singh', 65, 'Male', 'Blood Pressure', '9876543214'),
 (6, 'Priya Sen', 52, 'Female', 'Asthma', '9876543215'),
 (7, 'Amit Kumar', 40, 'Male', 'Flu', '9876543216');
+
+/*
+Output:
+Query OK, 7 rows affected
+*/
 
 -- Insert sample data into medicine table
 INSERT INTO medicine VALUES
@@ -69,6 +99,11 @@ INSERT INTO medicine VALUES
 (106, 'Vitamin C', 50.00),
 (107, 'Metformin', 200.00);
 
+/*
+Output:
+Query OK, 7 rows affected
+*/
+
 -- Insert sample data into bill table
 INSERT INTO bill VALUES
 (201, 1, 500.00, '2026-03-01 10:30:00'),
@@ -78,6 +113,11 @@ INSERT INTO bill VALUES
 (205, 5, 900.00, '2026-03-05 02:20:00'),
 (206, 6, 400.00, '2026-03-06 04:10:00'),
 (207, 7, 250.00, '2026-03-07 03:00:00');
+
+/*
+Output:
+Query OK, 7 rows affected
+*/
 
 -- Insert sample data into doctor table
 INSERT INTO doctor VALUES
@@ -89,6 +129,11 @@ INSERT INTO doctor VALUES
 (306, 'Dr. Kiran Patel', 'Pediatrics', '9006666666'),
 (307, 'Dr. Sunil Roy', 'ENT', '9007777777');
 
+/*
+Output:
+Query OK, 7 rows affected
+*/
+
 -- Insert sample data into appointment table
 INSERT INTO appointment VALUES
 (401, 1, 301, '2026-03-10', '10:00:00'),
@@ -99,11 +144,38 @@ INSERT INTO appointment VALUES
 (406, 6, 305, '2026-03-15', '02:00:00'),
 (407, 7, 307, '2026-03-16', '03:30:00');
 
+/*
+Output:
+Query OK, 7 rows affected
+*/
+
 -- Get all patients older than 50
 SELECT * FROM patient WHERE age > 50;
 
+/*
+Output:
++------------+--------------+-----+--------+----------------+------------+
+| patient_id | patient_name | age | gender | disease        | contact_no |
++------------+--------------+-----+--------+----------------+------------+
+|          1 | Rahul Sharma |  60 | Male   | Diabetes       | 9876543210 |
+|          3 | Ramesh Gupta |  55 | Male   | Heart Disease  | 9876543212 |
+|          5 | Mohan Singh  |  65 | Male   | Blood Pressure | 9876543214 |
+|          6 | Priya Sen    |  52 | Female | Asthma         | 9876543215 |
++------------+--------------+-----+--------+----------------+------------+
+*/
+
 -- Get all doctors who specialize in Cardiology
 SELECT * FROM doctor WHERE specialization = 'Cardiology';
+
+/*
+Output:
++-----------+----------------+----------------+------------+
+| doctor_id | doctor_name    | specialization | phone      |
++-----------+----------------+----------------+------------+
+|       301 | Dr. Raj Mehta  | Cardiology     | 9001111111 |
+|       304 | Dr. Pooja Nair | Cardiology     | 9004444444 |
++-----------+----------------+----------------+------------+
+*/
 
 -- Show patient names with their respective doctor names
 SELECT patient.patient_name, doctor.doctor_name
@@ -111,5 +183,29 @@ FROM appointment
 JOIN patient ON appointment.patient_id = patient.patient_id
 JOIN doctor ON appointment.doctor_id = doctor.doctor_id;
 
+/*
+Output:
++--------------+-----------------+
+| patient_name | doctor_name     |
++--------------+-----------------+
+| Rahul Sharma | Dr. Raj Mehta   |
+| Anita Das    | Dr. Neha Kapoor |
+| Ramesh Gupta | Dr. Raj Mehta   |
+| Sita Roy     | Dr. Vivek Shah  |
+| Mohan Singh  | Dr. Pooja Nair  |
+| Priya Sen    | Dr. Aman Verma  |
+| Amit Kumar   | Dr. Sunil Roy   |
++--------------+-----------------+
+*/
+
 -- Count total number of patients
 SELECT COUNT(*) AS total_patients FROM patient;
+
+/*
+Output:
++----------------+
+| total_patients |
++----------------+
+|              7 |
++----------------+
+*/
