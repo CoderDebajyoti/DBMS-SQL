@@ -1,7 +1,5 @@
 # DBMS Unit: Transaction Processing and Concurrency Control
 
----
-
 # Important 15 Marks Questions with Answers
 
 ## Q1. Explain ACID Properties of Transactions.
@@ -10,6 +8,7 @@
 A transaction is a logical unit of work that consists of one or more database operations.
 
 ### ACID Properties
+[Atomicity - Consistency - Isolation - Durability]
 
 ### 1. Atomicity
 - A transaction is treated as a single unit.
