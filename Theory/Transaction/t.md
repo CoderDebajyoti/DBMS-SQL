@@ -43,9 +43,38 @@ Consistency preserved.
 - Concurrent transactions should not interfere with each other.
 - Intermediate results are hidden from other transactions.
 
+**Example :**
+After transfer:
+```
+A = ₹4000
+B = ₹6000
+```
+```
+C = ₹60000
+```
+Transfer ₹1000 from Account A to Account B.
+Before transfer:
+```
+A = ₹3000
+B = ₹7000
+```
+**By the time of transition A,B cannot see the account balance & C cannot make any kind of transactions.**
+
 ### 4. Durability
 - Once a transaction is committed, changes become permanent.
 - Changes survive system failures.
+
+**Example:**
+Transaction to transfer ₹1000
+ A -> B is committed,
+ the changes are written to non-volatile storage (disk). 
+ Even if a power outage or system crash occurs immediately after the commit, 
+ the updated balances 
+ ```
+A = ₹4000
+B = ₹6000
+```
+ will survive and be restored when the system recovers.
 
 ### Advantages
 - Data integrity
